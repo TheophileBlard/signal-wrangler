@@ -40,8 +40,11 @@ install(EXPORT SgnlTargets
         NAMESPACE sgnl::
         DESTINATION lib/cmake/sgnl)
 
-add_subdirectory("test")
-
 add_executable(example EXCLUDE_FROM_ALL "example/example.cpp")
 target_link_libraries(example sgnl::sgnl)
+
+option(SGNL_BUILD_TESTS  "Build the tests" OFF)
+if(SGNL_BUILD_TESTS)
+  add_subdirectory("test")
+endif()
 
